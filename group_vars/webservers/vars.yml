@@ -1,0 +1,2 @@
+db_host: "{{ encrypted_db_host }}"
+db_password: "{{ encrypted_db_password }}"

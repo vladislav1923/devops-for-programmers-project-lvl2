@@ -1,5 +1,6 @@
 - hosts: webservers
   become: true
+
   tasks:
     - name: Pull an image
       community.docker.docker_image:
@@ -28,6 +29,9 @@
         image: redmine
         state: started
         restart: yes
+        env:
+          REDMINE_DB_POSTGRES: "{{db_host}}"
+          REDMINE_DB_PASSWORD: "{{db_password}}"
         env_file: .env
         ports:
           - "80:3000"
