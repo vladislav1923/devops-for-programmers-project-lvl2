@@ -1,0 +1,22 @@
+- hosts: webservers
+  become: true
+  tasks:
+    - name: Pull an image
+      community.docker.docker_image:
+        name: redmine
+        source: pull
+
+    - name: Create config file
+      ansible.builtin.template:
+        src: .env.example
+        dest: .env
+
+    - name: Restart a container
+      docker_container:
+        name: app
+        image: redmine
+        state: started
+        restart: yes
+        env_file: .env
+        ports:
+          - "80:3000"
