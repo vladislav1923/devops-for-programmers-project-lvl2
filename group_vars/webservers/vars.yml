@@ -1,2 +1,3 @@
 db_host: "{{ encrypted_db_host }}"
 db_password: "{{ encrypted_db_password }}"
+datadog_key: "{{ encrypted_datadog_api_key }}"

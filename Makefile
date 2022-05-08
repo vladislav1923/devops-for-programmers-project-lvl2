@@ -5,4 +5,7 @@ setup-servers:
 	ansible-playbook setup-playbook.yml -i inventory.ini
 
 deploy:
-	ansible-playbook deploy-playbook.yml -i inventory.ini --vault-password-file .db_secrets
+	ansible-playbook deploy-playbook.yml -i inventory.ini --vault-password-file .secrets
+
+setup-monitoring:
+	ansible-playbook monitoring-playbook.yml -i inventory.ini --vault-password-file .secrets
