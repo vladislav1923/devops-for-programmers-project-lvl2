@@ -1,4 +1,5 @@
 - hosts: webservers
+  become: true
   roles:
     - { role: datadog.datadog, become: yes }
   vars:
@@ -15,3 +16,9 @@
             cpu_check_interval: 0.2
             exact_match: true
             ignore_denied_access: true
+
+  tasks:
+    - name: Setup http checking
+      ansible.builtin.template:
+        src: http-check-example.yml
+        dest: ../../etc/datadog-agent/conf.d/http_check.d/conf.yaml
